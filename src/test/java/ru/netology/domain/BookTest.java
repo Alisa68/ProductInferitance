@@ -5,20 +5,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BookTest {
-    @Test
-    public void shouldHaveAllMethodsFromSuper() {
-        Book book = new Book();
+    private Book book = new Book(1, "Alice’s Adventures in Wonderland", 1228, "Lewis Carroll");
 
+    @Test
+    void shouldNotMatchesSearch() {
+        boolean actual = book.matches("");
+        assertEquals(false, actual);
     }
 
     @Test
-    public void shouldUseEquals() {
-        Book book1 = new Book(8, "MacBook", 1000, "Jhon");
-        Book book2 = new Book(8, "MacBook", 1000, "Jhon");
-
-
-        assertEquals(book1, book2);
-
+    void shouldMatchesBookByTitle() {
+        boolean actual = book.matches("Alice’s Adventures in Wonderland");
+        assertEquals(true, actual);
     }
 
+    @Test
+    void shouldMatchesBookByAuthor() {
+        boolean actual = book.matches("Lewis Carroll");
+        assertEquals(true, actual);
+    }
 }

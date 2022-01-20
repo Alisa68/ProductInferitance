@@ -5,19 +5,25 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SmartphoneTest {
+
+    private Smartphone smartphone = new Smartphone(3, "8.3", 49_990, "Sony");
+
     @Test
-    public void shouldHaveAllMethodsFromSuper() {
-        Smartphone smartphone = new Smartphone();
-
-    }
-    @Test
-    public void shouldEUseEquals() {
-        Smartphone smartphone1 =new Smartphone(2,"Sony",1000,"RRR");
-        Smartphone smartphone2 =new Smartphone(2,"Sony",1000,"RRR");
-
-        assertEquals(smartphone1,smartphone2);
-
+    void shouldNotMatchesSearch() {
+        boolean actual = smartphone.matches("");
+        assertEquals(false, actual);
     }
 
+    @Test
+    void shouldMatchesBookByTitle() {
+        boolean actual = smartphone.matches("8.3");
+        assertEquals(true, actual);
+    }
+
+    @Test
+    void shouldMatchesBookByManufacturer() {
+        boolean actual = smartphone.matches("Sony");
+        assertEquals(true, actual);
+    }
 
 }

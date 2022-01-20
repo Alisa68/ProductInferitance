@@ -16,7 +16,14 @@ public class Smartphone extends Product{
         return manufacture;
     }
 
-    public void setManufacture(String manufacture) {
-        this.manufacture = manufacture;
+    @Override
+    public boolean matches(String search) {
+        if (super.matches(search)) {
+            return true;
+        }
+        if (this.getManufacture().equalsIgnoreCase(search)) {
+            return true;
+        }
+        return false;
     }
 }

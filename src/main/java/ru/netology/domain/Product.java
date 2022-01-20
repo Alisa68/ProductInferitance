@@ -13,7 +13,14 @@ public class Product {
     public Product(int id, String name, int price) {
         this.id = id;
         this.name = name;
-        this.price=price;
+        this.price = price;
+    }
+
+    public boolean matches(String search) {
+        if (this.getName().equalsIgnoreCase(search)) {
+            return true;
+        }
+        return false;
     }
 
     public int getId() {
@@ -38,19 +45,6 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return id == product.id && price == product.price && Objects.equals(name, product.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price);
     }
 
 
