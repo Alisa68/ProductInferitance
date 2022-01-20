@@ -83,7 +83,7 @@ class ProductrepositoryTest {
     void searchAllByAuthor() {
         setUp();
 
-        Product[] expected = new Product[]{second, first};
+        Product[] expected = new Product[]{ first,second};
         Product[] actual = manager.searchBy("Толстой");
         assertArrayEquals(expected, actual);
     }

@@ -1,5 +1,6 @@
 package ru.netology.ru.netology.manager;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
@@ -83,8 +84,8 @@ class ProductManagerTest {
     void searchAllByAuthor() {
         setUp();
 
-        Product[] expected = new Product[]{second, first};
-        Product[] actual = manager.searchBy("Толстой");
+        Product[] expected = new Product[]{third};
+        Product[] actual = manager.searchBy("Чехов");
         assertArrayEquals(expected, actual);
     }
 

@@ -2,6 +2,7 @@ package ru.netology.domain;
 
 public class Book extends Product {
     private String autor;
+
     public Book() {
         super();
     }
@@ -15,7 +16,19 @@ public class Book extends Product {
         return autor;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+
+    public String getAuthor() {
+        return autor;
+    }
+
+    @Override
+    public boolean matches(String search) {
+        if (super.matches(search)) {
+            return true;
+        }
+        if (this.getAuthor().equalsIgnoreCase(search)) {
+            return true;
+        }
+        return false;
     }
 }
