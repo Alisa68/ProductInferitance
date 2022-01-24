@@ -4,12 +4,13 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
-import ru.netology.ru.netology.manager.ProductManager;
+import ru.netology.manager.ProductManager;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductrepositoryTest {
-    private Productrepository repository = new Productrepository();
+    private ProductRepository repository = new ProductRepository();
     private ProductManager manager = new ProductManager(repository);
 
     Product first = new Book(1, "Анна Каренина", 1000, "Толстой");

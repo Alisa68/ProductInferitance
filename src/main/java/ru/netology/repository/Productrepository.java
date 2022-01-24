@@ -4,7 +4,7 @@ import ru.netology.domain.Product;
 
 import java.util.Arrays;
 
-public class Productrepository {
+public class ProductRepository {
     private Product[] items = new Product[0];
 
     public void save(Product item) {

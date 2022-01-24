@@ -1,16 +1,16 @@
-package ru.netology.ru.netology.manager;
+package ru.netology.manager;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
-import ru.netology.repository.Productrepository;
+import ru.netology.repository.ProductRepository;
+import ru.netology.repository.ProductRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductManagerTest {
-    private Productrepository repository = new Productrepository();
+    private ProductRepository repository = new ProductRepository();
     private ProductManager manager = new ProductManager(repository);
 
     Product first = new Book(1, "Анна Каренина", 1000, "Толстой");
@@ -28,11 +28,6 @@ class ProductManagerTest {
         manager.add(fifth);
     }
 
-    @Test
-    public void addProduct() {
-        manager.add(first);
-        assertArrayEquals(new Product[]{first}, repository.getAll());
-    }
 
     @Test
     void searchByName() {
@@ -79,7 +74,7 @@ class ProductManagerTest {
         assertArrayEquals(expected, actual);
     }
 
-    //    поиск всех книг одного автора
+
     @Test
     void searchAllByAuthor() {
         setUp();
@@ -89,7 +84,7 @@ class ProductManagerTest {
         assertArrayEquals(expected, actual);
     }
 
-    //    Запрос, на который нет ответа
+
     @Test
     void searchAll() {
         setUp();
@@ -98,7 +93,5 @@ class ProductManagerTest {
         Product[] actual = manager.searchBy(null);
         assertArrayEquals(expected, actual);
     }
-
-
 
 }

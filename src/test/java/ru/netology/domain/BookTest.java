@@ -10,18 +10,18 @@ class BookTest {
     @Test
     void shouldNotMatchesSearch() {
         boolean actual = book.matches("");
-        assertEquals(false, actual);
+        assertFalse(actual);
     }
 
     @Test
     void shouldMatchesBookByTitle() {
         boolean actual = book.matches("Alice’s Adventures in Wonderland");
-        assertEquals(true, actual);
+        assertTrue(actual);
     }
 
     @Test
     void shouldMatchesBookByAuthor() {
         boolean actual = book.matches("Lewis Carroll");
-        assertEquals(true, actual);
+        assertTrue ( actual);
     }
 }
