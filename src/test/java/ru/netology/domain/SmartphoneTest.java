@@ -10,12 +10,13 @@ class SmartphoneTest {
         Smartphone smartphone = new Smartphone();
 
     }
+
     @Test
     public void shouldEUseEquals() {
-        Smartphone smartphone1 =new Smartphone(2,"Sony",1000,"RRR");
-        Smartphone smartphone2 =new Smartphone(2,"Sony",1000,"RRR");
+        Smartphone smartphone1 = new Smartphone(2, "Sony", 1000, "RRR");
+        Smartphone smartphone2 = new Smartphone(2, "Sony", 1000, "RRR");
 
-        assertEquals(smartphone1,smartphone2);
+        assertEquals(smartphone1, smartphone2);
 
     }
 

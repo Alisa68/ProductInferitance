@@ -1,15 +1,19 @@
 package ru.netology.manager;
 
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
-import ru.netology.repository.Productrepository;
+import ru.netology.repository.ProductRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class ProductManagerTest {
-    private Productrepository repository = new Productrepository();
+    private ProductRepository repository = new ProductRepository();
     private ProductManager manager = new ProductManager(repository);
 
     Product first = new Book(1, "Анна Каренина", 1000, "Толстой");
@@ -18,7 +22,7 @@ class ProductManagerTest {
     Product fourth = new Smartphone(4, "Apple", 4100, "IND");
     Product fifth = new Smartphone(5, "Sony", 3300, "RTF");
 
-
+    @BeforeEach
     public void setUp() {
         manager.add(first);
         manager.add(second);
@@ -27,15 +31,9 @@ class ProductManagerTest {
         manager.add(fifth);
     }
 
-    @Test
-    public void addProduct() {
-        manager.add(first);
-        assertArrayEquals(new Product[]{first}, repository.getAll());
-    }
 
     @Test
     void searchByName() {
-        setUp();
 
         Product[] expected = new Product[]{third};
         Product[] actual = manager.searchBy("Человек футляр");
@@ -44,7 +42,6 @@ class ProductManagerTest {
 
     @Test
     void searchMatchesNameBook() {
-        setUp();
 
         Product[] expected = new Product[]{second};
         Product[] actual = manager.searchBy("Война и мир");
@@ -53,7 +50,6 @@ class ProductManagerTest {
 
     @Test
     void searchMatchesAuthor() {
-        setUp();
 
         Product[] expected = new Product[]{third};
         Product[] actual = manager.searchBy("Чехов");
@@ -62,7 +58,6 @@ class ProductManagerTest {
 
     @Test
     void searchMatchesManufacture() {
-        setUp();
 
         Product[] expected = new Product[]{fifth};
         Product[] actual = manager.searchBy("RTF");
@@ -71,9 +66,8 @@ class ProductManagerTest {
 
     @Test
     void searchMatchesNameSmartphone() {
-        setUp();
 
-        Product[] expected = new Product[]{fourth};
+        Product[] expected = {fourth};
         Product[] actual = manager.searchBy("Apple");
         assertArrayEquals(expected, actual);
     }
@@ -81,23 +75,19 @@ class ProductManagerTest {
     //    поиск всех книг одного автора
     @Test
     void searchAllByAuthor() {
-        setUp();
 
-        Product[] expected = new Product[]{second, first};
-        Product[] actual = manager.searchBy("Толстой");
+        Product[] expected = {third};
+        Product[] actual = manager.searchBy("Чехов");
         assertArrayEquals(expected, actual);
     }
 
     //    Запрос, на который нет ответа
     @Test
     void searchAll() {
-        setUp();
 
-        Product[] expected = new Product[]{};
-        Product[] actual = manager.searchBy(null);
+        Product[] expected = new Product[0];
+        Product[] actual = manager.searchBy("null");
         assertArrayEquals(expected, actual);
     }
-
-
 
 }

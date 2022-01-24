@@ -4,8 +4,17 @@ import ru.netology.domain.Product;
 
 import java.util.Arrays;
 
-public class Productrepository {
+public class ProductRepository {
     private Product[] items = new Product[0];
+
+    public Product[] getAll() {
+        Product[] result = new Product[items.length];
+        for (int i = 0; i < result.length; i++) {
+            int index = items.length - i - 1;
+            result[i] = items[index];
+        }
+        return result;
+    }
 
     public void save(Product item) {
         int length = items.length + 1;
@@ -20,15 +29,6 @@ public class Productrepository {
         return items;
     }
 
-    public Product[] getAll() {
-        Product[] result = new Product[items.length];
-        for (int i = 0; i < result.length; i++) {
-            int index = items.length - i - 1;
-            result[i] = items[index];
-        }
-        return result;
-    }
-
     public void removeById(int id) {
         int length = items.length - 1;
         Product[] tmp = new Product[length];
@@ -41,6 +41,5 @@ public class Productrepository {
         }
         items = tmp;
     }
-
 
 }

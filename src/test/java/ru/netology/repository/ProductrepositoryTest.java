@@ -1,15 +1,17 @@
 package ru.netology.repository;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
-import ru.netology.ru.netology.manager.ProductManager;
+import ru.netology.manager.ProductManager;
+import ru.netology.manager.ProductManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProductrepositoryTest {
-    private Productrepository repository = new Productrepository();
+class ProductRepositoryTest {
+    private ProductRepository repository = new ProductRepository();
     private ProductManager manager = new ProductManager(repository);
 
     Product first = new Book(1, "Анна Каренина", 1000, "Толстой");
@@ -18,7 +20,7 @@ class ProductrepositoryTest {
     Product fourth = new Smartphone(4, "Apple", 4100, "IND");
     Product fifth = new Smartphone(5, "Sony", 3300, "RTF");
 
-
+    @BeforeEach
     public void setUp() {
         manager.add(first);
         manager.add(second);
@@ -28,14 +30,7 @@ class ProductrepositoryTest {
     }
 
     @Test
-    public void addProduct() {
-        manager.add(first);
-        assertArrayEquals(new Product[]{first}, repository.getAll());
-    }
-
-    @Test
     void searchByName() {
-        setUp();
 
         Product[] expected = new Product[]{third};
         Product[] actual = manager.searchBy("Человек футляр");
@@ -44,7 +39,6 @@ class ProductrepositoryTest {
 
     @Test
     void searchMatchesNameBook() {
-        setUp();
 
         Product[] expected = new Product[]{second};
         Product[] actual = manager.searchBy("Война и мир");
@@ -53,7 +47,6 @@ class ProductrepositoryTest {
 
     @Test
     void searchMatchesAuthor() {
-        setUp();
 
         Product[] expected = new Product[]{third};
         Product[] actual = manager.searchBy("Чехов");
@@ -62,7 +55,6 @@ class ProductrepositoryTest {
 
     @Test
     void searchMatchesManufacture() {
-        setUp();
 
         Product[] expected = new Product[]{fifth};
         Product[] actual = manager.searchBy("RTF");
@@ -71,41 +63,29 @@ class ProductrepositoryTest {
 
     @Test
     void searchMatchesNameSmartphone() {
-        setUp();
 
         Product[] expected = new Product[]{fourth};
         Product[] actual = manager.searchBy("Apple");
         assertArrayEquals(expected, actual);
     }
 
-    //    поиск всех книг одного автора
+
     @Test
     void searchAllByAuthor() {
-        setUp();
 
-        Product[] expected = new Product[]{second, first};
+        Product[] expected = new Product[]{first, second};
         Product[] actual = manager.searchBy("Толстой");
         assertArrayEquals(expected, actual);
     }
 
-    //    Запрос, на который нет ответа
+
     @Test
     void searchAll() {
-        setUp();
 
         Product[] expected = new Product[]{};
-        Product[] actual = manager.searchBy(null);
+        Product[] actual = manager.searchBy("null");
         assertArrayEquals(expected, actual);
     }
 
-    @Test
-    public void shouldRemoveByID() {
-        repository.save(first);
-        repository.save(second);
-        Product[] expected = new Product[]{second};
-        repository.removeById(1);
-        Product[] actual = repository.findAll();
-        assertArrayEquals(expected, actual);
-    }
 
 }
